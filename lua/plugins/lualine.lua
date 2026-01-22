@@ -1,0 +1,10 @@
+return {
+  "nvim-lualine/lualine.nvim",
+  opts = function(_, opts)
+    opts.sections.lualine_c[4] = {
+      LazyVim.lualine.pretty_path({
+        length = 6, -- default is 3; increase to reduce `...`
+      }),
+    }
+  end,
+}
