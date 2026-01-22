@@ -5,6 +5,7 @@
 local map = LazyVim.safe_keymap_set
 
 map("i", "jk", "<Esc>", { desc = "Exit insert mode" })
+map("n", "<leader>a", "<cmd>w<cr>", { desc = "Save" })
 
 -- Delete file and buffer
 
