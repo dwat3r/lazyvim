@@ -21,3 +21,7 @@ local function delete_file_and_buffer()
 end
 
 map("n", "<leader>fD", delete_file_and_buffer, { desc = "Delete file and buffer" })
+
+--  stolen from helix
+map({ "n", "v", "x" }, "gh", "0")
+map({ "n", "v", "x" }, "gl", "$")
