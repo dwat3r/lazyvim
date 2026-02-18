@@ -58,3 +58,34 @@ vim.api.nvim_create_user_command("NextLint", function()
     end,
   })
 end, {})
+
+-- kanata grammar
+
+vim.api.nvim_create_autocmd("User", {
+  pattern = "TSUpdate",
+  callback = function()
+    require("nvim-treesitter.parsers").kanata = {
+      install_info = {
+        url = "https://github.com/postsolar/tree-sitter-kanata",
+        revision = "a6213d06ea6efa432702bbbc6b4c5dcddc21df2a", -- commit hash for revision to check out; HEAD if missing
+        -- optional entries:
+        branch = "master", -- only needed if different from default branch
+        location = "parser", -- only needed if the parser is in subdirectory of a "monorepo"
+        generate = true, -- only needed if repo does not contain pre-generated `src/parser.c`
+        generate_from_json = false, -- only needed if repo does not contain `src/grammar.json` either
+        queries = "queries/neovim", -- also install queries from given directory
+      },
+    }
+  end,
+})
+
+vim.treesitter.language.register("kanata", { "kbd" })
+
+vim.filetype.add({
+  extension = {
+    kbd = "kanata",
+  },
+  filename = {
+    ["kanata.kbd"] = "kanata",
+  },
+})
