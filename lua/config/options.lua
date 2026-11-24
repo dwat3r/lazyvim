@@ -4,3 +4,6 @@
 --
 vim.g.snacks_animate = false
 vim.o.shell = "fish"
+
+-- Lives here, not in autocmds.lua: autocmds load lazily and miss buffers opened at startup
+vim.filetype.add({ filename = { Fastfile = "ruby", Appfile = "ruby" } })

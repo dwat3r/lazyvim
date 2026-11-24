@@ -89,3 +89,19 @@ vim.filetype.add({
     ["kanata.kbd"] = "kanata",
   },
 })
+
+-- Diagnostics start off in markdown buffers; <leader>ud turns them on
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "markdown" },
+  callback = function(args)
+    vim.diagnostic.enable(false, { bufnr = args.buf })
+  end,
+})
+
+-- otter.nvim: activate() no-ops when no injected code is found, safe to call unconditionally
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "typescript", "typescriptreact" },
+  callback = function()
+    require("otter").activate()
+  end,
+})
